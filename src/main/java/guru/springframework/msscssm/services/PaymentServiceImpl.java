@@ -11,9 +11,7 @@ import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.support.DefaultStateMachineContext;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.beans.Transient;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * User: sidna
@@ -69,6 +67,7 @@ public class PaymentServiceImpl implements PaymentService {
         Message msg = MessageBuilder.withPayload(event)
                 .setHeader(PAYMENT_ID_HEADER, paymentId)
                 .build();
+
         sm.sendEvent(msg);
     }
 

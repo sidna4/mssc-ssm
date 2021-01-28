@@ -1,6 +1,5 @@
 package guru.springframework.msscssm.config;
 
-import guru.springframework.msscssm.domain.Payment;
 import guru.springframework.msscssm.domain.PaymentEvent;
 import guru.springframework.msscssm.domain.PaymentState;
 import org.junit.jupiter.api.Test;
@@ -10,8 +9,6 @@ import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.config.StateMachineFactory;
 
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * User: sidna

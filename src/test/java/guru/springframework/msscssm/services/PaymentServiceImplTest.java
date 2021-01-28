@@ -9,13 +9,10 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.statemachine.StateMachine;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * User: sidna
@@ -42,11 +39,14 @@ class PaymentServiceImplTest {
     void preAuth() {
         Payment savedPayment = paymentService.newPayment(payment);
 
+        System.out.println("Should be NEW");
+        System.out.println(savedPayment.getState());
+
         StateMachine<PaymentState, PaymentEvent> sm = paymentService.preAuth(savedPayment.getId());
 
         Payment preAuthedPayment = paymentRepository.getOne(savedPayment.getId());
-        System.out.println("Should be PRE_AUTH or PRE_AUTH_ERROR");
 
+        System.out.println("Should be PRE_AUTH or PRE_AUTH_ERROR");
         System.out.println(sm.getState().getId());
 
         System.out.println(preAuthedPayment);
